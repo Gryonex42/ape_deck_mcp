@@ -131,8 +131,10 @@ export function registerSearchCards(server: McpServer): void {
     "search_cards",
     "Search for Magic: The Gathering cards by name or oracle text. " +
       "Searches both card names (exact substring match) and oracle text (full-text search). " +
-      "Use this to find cards by what they do, their name, or specific rules text. " +
-      "Results include card name, oracle text, mana cost, CMC, type line, and color identity.",
+      "Use this for broad card discovery — finding cards by what they do, their name, or specific rules text. " +
+      "Results include card name, oracle text, mana cost, CMC, type line, and color identity. " +
+      "For full details on a specific card, use get_card instead. " +
+      "For mechanic-based searches (e.g. 'find me removal spells'), use find_by_mechanic.",
     {
       query: z.string().describe(
         "Search query — matches against card name and oracle text"

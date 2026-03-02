@@ -194,7 +194,8 @@ export function registerGetCard(server: McpServer): void {
       "Returns all card properties: oracle text, mana cost, type line, power/toughness, " +
       "keywords, creature types, card types, mechanic tags, color identity, produced mana, " +
       "EDHREC rank, and format legalities. Use this when you need comprehensive information " +
-      "about a single card.",
+      "about a single card — for example, before recommending it or after finding it via search_cards. " +
+      "To find synergies or combos for a card, use find_synergies or find_combos instead.",
     {
       card_name: z.string().describe(
         "The card name to look up. Matched case-insensitively."
