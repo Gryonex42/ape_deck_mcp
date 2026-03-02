@@ -25,6 +25,8 @@
 - `mtg-mcp/src/tools/find-combos.test.ts` — Integration tests for `find_combos` tool
 - `mtg-mcp/src/tools/find-tribal.ts` — `find_tribal` tool: find tribal lords, creatures, and support cards for a creature type
 - `mtg-mcp/src/tools/find-tribal.test.ts` — Integration tests for `find_tribal` tool (11 tests)
+- `mtg-mcp/src/tools/check-legality.ts` — `check_legality` tool: validate card names against format legality via LEGAL_IN edges
+- `mtg-mcp/src/tools/check-legality.test.ts` — Integration tests for `check_legality` tool (10 tests)
 
 ## Notes
 
@@ -69,9 +71,9 @@
   - [x] 5.1 Create `src/tools/find-tribal.ts` — find tribal lords, payoffs, and enablers for a creature type. Parameters: `creature_type` (string, required), `color_identity` (string[], optional), `format` (string, optional, default `commander`), `limit` (number, optional, default 20). Query: match `TRIBAL_LORD_OF` edges for lords, `HAS_CREATURE_TYPE` for creatures of the type, and `PAYOFF_FOR`/`ENABLER_FOR` edges for cards that support the tribe's common mechanics. Return categorised results (lords, creatures, payoffs, enablers)
   - [x] 5.2 Register the tool and write tests
 
-- [ ] 6.0 Legality checking tool
-  - [ ] 6.1 Create `src/tools/check-legality.ts` — validate a list of cards against format legality. Parameters: `card_names` (string[], required), `format` (string, required). Query: for each card name, check if a `LEGAL_IN` edge exists to the format. Return a results array with each card's status (legal, restricted, not legal, not found)
-  - [ ] 6.2 Register the tool and write tests
+- [x] 6.0 Legality checking tool
+  - [x] 6.1 Create `src/tools/check-legality.ts` — validate a list of cards against format legality. Parameters: `card_names` (string[], required), `format` (string, required). Query: for each card name, check if a `LEGAL_IN` edge exists to the format. Return a results array with each card's status (legal, restricted, not legal, not found)
+  - [x] 6.2 Register the tool and write tests
 
 - [ ] 7.0 Card detail tool
   - [ ] 7.1 Create `src/tools/get-card.ts` — get full details for a specific card. Parameters: `card_name` (string, required). Return all Card properties plus its keywords, creature types, card types, color identity, mechanic tags, and format legalities

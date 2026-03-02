@@ -6,6 +6,7 @@ import { registerFindSynergies } from "./tools/find-synergies.js";
 import { registerFindByMechanic } from "./tools/find-by-mechanic.js";
 import { registerFindCombos } from "./tools/find-combos.js";
 import { registerFindTribal } from "./tools/find-tribal.js";
+import { registerCheckLegality } from "./tools/check-legality.js";
 
 const server = new McpServer({
   name: "mtg-mcp",
@@ -18,6 +19,7 @@ registerFindSynergies(server);
 registerFindByMechanic(server);
 registerFindCombos(server);
 registerFindTribal(server);
+registerCheckLegality(server);
 
 // Graceful shutdown
 async function shutdown() {

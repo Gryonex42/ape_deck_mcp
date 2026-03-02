@@ -50,3 +50,10 @@
 - The tool uses three strategies: (1) lords via TRIBAL_LORD_OF, (2) top creatures of the type via HAS_CREATURE_TYPE, (3) support cards that reference the type name in oracle_text but aren't members.
 - CreatureType names are capitalised (e.g. "Zombie" not "zombie") — tool does case-insensitive matching as fallback.
 - Top creature types by card count: Human (4190), Warrior (1196), Wizard (1172), Soldier (990), Elf (641), Zombie (599), Goblin (509).
+
+## Legality Tool Data (Task 6.0)
+
+- `check_legality` uses UNWIND + OPTIONAL MATCH to check multiple cards in a single Cypher query rather than looping per card.
+- Card name matching is case-insensitive via `toLower()`. The tool returns the resolved (proper-cased) name from the DB.
+- LEGAL_IN edges have a `status` property: `"legal"` or `"restricted"`. If no edge exists, the card is not legal in that format.
+- Sol Ring: legal in commander, not legal in standard/modern. Lightning Bolt: legal in commander and modern.
