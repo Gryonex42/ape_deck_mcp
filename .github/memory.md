@@ -39,3 +39,14 @@
 - Maximum shared mechanic tags between any two cards is 2 (7 such pairs exist). No pairs share 3+ tags.
 - `find_combos` tool uses three strategies: (1) enabler/payoff pairings, (2) co-enabler discovery, (3) complementary tag-name pattern matching with a defined mapping (sacrifice↔death/graveyard, blink↔etb, etc.).
 - Complementary tag patterns are defined as constants in find-combos.ts — easy to extend.
+
+## Tribal Tool Data (Task 5.0)
+
+- 484 TRIBAL_LORD_OF edges total across many creature types.
+- Top tribes by lord count: Sliver (93), Zombie (26), Elf (22), Human (22), Goblin (19), Soldier (17), Knight (13), Dragon (13).
+- Lords include non-creature cards (e.g. Sorceries, Planeswalkers, Enchantments) — not just creature type members.
+- TRIBAL_LORD_OF `buff` property is a descriptive string like "get +1/+1 and have lifelink".
+- No "tribal" MechanicTags exist in the database, so the tool doesn't use PAYOFF_FOR/ENABLER_FOR for tribal mechanics.
+- The tool uses three strategies: (1) lords via TRIBAL_LORD_OF, (2) top creatures of the type via HAS_CREATURE_TYPE, (3) support cards that reference the type name in oracle_text but aren't members.
+- CreatureType names are capitalised (e.g. "Zombie" not "zombie") — tool does case-insensitive matching as fallback.
+- Top creature types by card count: Human (4190), Warrior (1196), Wizard (1172), Soldier (990), Elf (641), Zombie (599), Goblin (509).

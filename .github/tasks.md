@@ -23,6 +23,8 @@
 - `mtg-mcp/src/tools/find-synergies.test.ts` — Integration tests for `find_synergies` and `find_by_mechanic` tools
 - `mtg-mcp/src/tools/find-combos.ts` — `find_combos` tool: discover combo partners via enabler/payoff pairings, co-enablers, and complementary mechanic tags
 - `mtg-mcp/src/tools/find-combos.test.ts` — Integration tests for `find_combos` tool
+- `mtg-mcp/src/tools/find-tribal.ts` — `find_tribal` tool: find tribal lords, creatures, and support cards for a creature type
+- `mtg-mcp/src/tools/find-tribal.test.ts` — Integration tests for `find_tribal` tool (11 tests)
 
 ## Notes
 
@@ -63,9 +65,9 @@
   - [x] 4.1 Create `src/tools/find-combos.ts` — find combo partners for a card. No `COMBOS_WITH` relationship exists in the DB, so the tool uses three strategies: (1) enabler↔payoff pairings via ENABLER_FOR/PAYOFF_FOR edges, (2) co-enabler discovery for same-mechanic strategy partners, (3) complementary mechanic tag matching (e.g. sacrifice → death triggers, blink → ETB). Parameters: `card_name`, `format`, `color_identity`, `limit`
   - [x] 4.2 Register the tool in server.ts and write integration tests (10 tests)
 
-- [ ] 5.0 Tribal support tool
-  - [ ] 5.1 Create `src/tools/find-tribal.ts` — find tribal lords, payoffs, and enablers for a creature type. Parameters: `creature_type` (string, required), `color_identity` (string[], optional), `format` (string, optional, default `commander`), `limit` (number, optional, default 20). Query: match `TRIBAL_LORD_OF` edges for lords, `HAS_CREATURE_TYPE` for creatures of the type, and `PAYOFF_FOR`/`ENABLER_FOR` edges for cards that support the tribe's common mechanics. Return categorised results (lords, creatures, payoffs, enablers)
-  - [ ] 5.2 Register the tool and write tests
+- [x] 5.0 Tribal support tool
+  - [x] 5.1 Create `src/tools/find-tribal.ts` — find tribal lords, payoffs, and enablers for a creature type. Parameters: `creature_type` (string, required), `color_identity` (string[], optional), `format` (string, optional, default `commander`), `limit` (number, optional, default 20). Query: match `TRIBAL_LORD_OF` edges for lords, `HAS_CREATURE_TYPE` for creatures of the type, and `PAYOFF_FOR`/`ENABLER_FOR` edges for cards that support the tribe's common mechanics. Return categorised results (lords, creatures, payoffs, enablers)
+  - [x] 5.2 Register the tool and write tests
 
 - [ ] 6.0 Legality checking tool
   - [ ] 6.1 Create `src/tools/check-legality.ts` — validate a list of cards against format legality. Parameters: `card_names` (string[], required), `format` (string, required). Query: for each card name, check if a `LEGAL_IN` edge exists to the format. Return a results array with each card's status (legal, restricted, not legal, not found)
