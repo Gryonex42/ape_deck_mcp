@@ -65,3 +65,10 @@
 - Tool chaining workflows tested: find_synergies→find_by_mechanic→check_legality, get_card→find_combos→check_legality, search_cards→get_card, find_tribal→check_legality.
 - Invalid format names are handled gracefully by all tools — they return "no results" or "not legal" rather than errors, since no LEGAL_IN edges exist for unknown formats.
 - Improved `search_cards` and `get_card` descriptions with cross-tool guidance to help the LLM choose the right tool.
+
+## MCP Client Config (Task 9.0)
+
+- `.vscode/mcp.json` uses `"type": "stdio"` with `npx tsx src/server.ts` and `cwd: "${workspaceFolder}/mtg-mcp"`.
+- VS Code MCP config uses `servers` as the top-level key (not `mcpServers`).
+- Claude Desktop config uses `mcpServers` as the top-level key and requires an absolute path for `cwd`.
+- Server verified working with real MCP client: 7 tools listed, get_card returns correct data for Sol Ring (EDHREC Rank #1).

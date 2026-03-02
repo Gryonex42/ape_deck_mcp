@@ -31,6 +31,7 @@
 - `mtg-mcp/src/tools/get-card.test.ts` — Integration tests for `get_card` tool (11 tests)
 - `mtg-mcp/src/integration.test.ts` — E2E integration tests: server health, all tools, error handling, 4 tool chaining workflows (25 tests)
 - `mtg-mcp/README.md` — Setup instructions, tool documentation, workflow examples, MCP client configurations
+- `.vscode/mcp.json` — VS Code MCP server configuration for GitHub Copilot integration
 
 ## Notes
 
@@ -90,7 +91,7 @@
   - [x] 8.4 Review all tool descriptions for clarity — these are the LLM's only documentation for deciding which tool to call
   - [x] 8.5 Create a `README.md` with setup instructions, tool descriptions, and example usage
 
-- [ ] 9.0 MCP client configuration
-  - [ ] 9.1 Create an MCP client configuration file (e.g. for Claude Desktop or VS Code) that registers this server with the correct command (`tsx src/server.ts`) and working directory
-  - [ ] 9.2 Document how to add this MCP server to different clients (Claude Desktop, VS Code Copilot, custom agents) in the README
-  - [ ] 9.3 Test with at least one real LLM client to verify the tools work in practice
+- [x] 9.0 MCP client configuration
+  - [x] 9.1 Create an MCP client configuration file (e.g. for Claude Desktop or VS Code) that registers this server with the correct command (`tsx src/server.ts`) and working directory
+  - [x] 9.2 Document how to add this MCP server to different clients (Claude Desktop, VS Code Copilot, custom agents) in the README
+  - [x] 9.3 Test with at least one real LLM client to verify the tools work in practice
