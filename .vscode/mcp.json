@@ -1,0 +1,10 @@
+{
+  "servers": {
+    "mtg": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["tsx", "src/server.ts"],
+      "cwd": "${workspaceFolder}/mtg-mcp"
+    }
+  }
+}

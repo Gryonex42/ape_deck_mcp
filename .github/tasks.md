@@ -29,6 +29,8 @@
 - `mtg-mcp/src/tools/check-legality.test.ts` — Integration tests for `check_legality` tool (10 tests)
 - `mtg-mcp/src/tools/get-card.ts` — `get_card` tool: get full details for a specific card by name
 - `mtg-mcp/src/tools/get-card.test.ts` — Integration tests for `get_card` tool (11 tests)
+- `mtg-mcp/src/integration.test.ts` — E2E integration tests: server health, all tools, error handling, 4 tool chaining workflows (25 tests)
+- `mtg-mcp/README.md` — Setup instructions, tool documentation, workflow examples, MCP client configurations
 
 ## Notes
 
@@ -81,12 +83,12 @@
   - [x] 7.1 Create `src/tools/get-card.ts` — get full details for a specific card. Parameters: `card_name` (string, required). Return all Card properties plus its keywords, creature types, card types, color identity, mechanic tags, and format legalities
   - [x] 7.2 Register the tool and write tests
 
-- [ ] 8.0 Integration testing and polish
-  - [ ] 8.1 Write integration tests that run the MCP server end-to-end: start the server, send tool calls via stdio, verify responses
-  - [ ] 8.2 Test tool chaining: `find_synergies` → `find_by_mechanic` → `check_legality` in sequence
-  - [ ] 8.3 Add error handling for common failures: card not found, invalid format, Neo4j connection down. Each should return a clear message the LLM can understand
-  - [ ] 8.4 Review all tool descriptions for clarity — these are the LLM's only documentation for deciding which tool to call
-  - [ ] 8.5 Create a `README.md` with setup instructions, tool descriptions, and example usage
+- [x] 8.0 Integration testing and polish
+  - [x] 8.1 Write integration tests that run the MCP server end-to-end: start the server, send tool calls via stdio, verify responses
+  - [x] 8.2 Test tool chaining: `find_synergies` → `find_by_mechanic` → `check_legality` in sequence
+  - [x] 8.3 Add error handling for common failures: card not found, invalid format, Neo4j connection down. Each should return a clear message the LLM can understand
+  - [x] 8.4 Review all tool descriptions for clarity — these are the LLM's only documentation for deciding which tool to call
+  - [x] 8.5 Create a `README.md` with setup instructions, tool descriptions, and example usage
 
 - [ ] 9.0 MCP client configuration
   - [ ] 9.1 Create an MCP client configuration file (e.g. for Claude Desktop or VS Code) that registers this server with the correct command (`tsx src/server.ts`) and working directory

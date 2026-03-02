@@ -159,7 +159,10 @@ Tools are designed to be chained:
 
 ### Claude Desktop
 
-Add to your Claude Desktop config (`claude_desktop_config.json`):
+Add to your Claude Desktop config file:
+
+- **macOS:** `~/Library/Application Support/Claude/claude_desktop_config.json`
+- **Windows:** `%APPDATA%\Claude\claude_desktop_config.json`
 
 ```json
 {
@@ -167,20 +170,25 @@ Add to your Claude Desktop config (`claude_desktop_config.json`):
     "mtg": {
       "command": "npx",
       "args": ["tsx", "src/server.ts"],
-      "cwd": "/path/to/mtg-mcp"
+      "cwd": "/absolute/path/to/mtg-mcp"
     }
   }
 }
 ```
 
+Replace `/absolute/path/to/mtg-mcp` with the actual path to the `mtg-mcp` directory. Restart Claude Desktop after saving.
+
 ### VS Code (GitHub Copilot)
 
-Add to your VS Code `settings.json` or workspace `.vscode/mcp.json`:
+This repo includes a ready-to-use `.vscode/mcp.json` config at the workspace root. If you opened this repo in VS Code, the MCP server is already configured.
+
+To set it up manually, create `.vscode/mcp.json` in your workspace root:
 
 ```json
 {
-  "mcpServers": {
+  "servers": {
     "mtg": {
+      "type": "stdio",
       "command": "npx",
       "args": ["tsx", "src/server.ts"],
       "cwd": "${workspaceFolder}/mtg-mcp"
@@ -188,6 +196,11 @@ Add to your VS Code `settings.json` or workspace `.vscode/mcp.json`:
   }
 }
 ```
+
+Then in VS Code:
+1. Open the Command Palette (`Ctrl+Shift+P` / `Cmd+Shift+P`)
+2. Run **MCP: List Servers** to verify the server is detected
+3. The tools will be available to GitHub Copilot in chat (agent mode)
 
 ### Custom Agents
 

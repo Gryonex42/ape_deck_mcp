@@ -57,3 +57,11 @@
 - Card name matching is case-insensitive via `toLower()`. The tool returns the resolved (proper-cased) name from the DB.
 - LEGAL_IN edges have a `status` property: `"legal"` or `"restricted"`. If no edge exists, the card is not legal in that format.
 - Sol Ring: legal in commander, not legal in standard/modern. Lightning Bolt: legal in commander and modern.
+
+## Integration & Polish (Task 8.0)
+
+- 94 total tests across 8 test files (3 db, 10 search, 14 synergies, 10 combos, 11 tribal, 10 legality, 11 get-card, 25 E2E integration).
+- E2E integration test (`integration.test.ts`) covers: server health (7 tools listed, descriptions non-empty, schemas present), all 7 tools smoke tests, 5 error handling cases, 4 tool chaining workflows.
+- Tool chaining workflows tested: find_synergies→find_by_mechanic→check_legality, get_card→find_combos→check_legality, search_cards→get_card, find_tribal→check_legality.
+- Invalid format names are handled gracefully by all tools — they return "no results" or "not legal" rather than errors, since no LEGAL_IN edges exist for unknown formats.
+- Improved `search_cards` and `get_card` descriptions with cross-tool guidance to help the LLM choose the right tool.
