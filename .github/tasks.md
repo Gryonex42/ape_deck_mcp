@@ -27,6 +27,8 @@
 - `mtg-mcp/src/tools/find-tribal.test.ts` — Integration tests for `find_tribal` tool (11 tests)
 - `mtg-mcp/src/tools/check-legality.ts` — `check_legality` tool: validate card names against format legality via LEGAL_IN edges
 - `mtg-mcp/src/tools/check-legality.test.ts` — Integration tests for `check_legality` tool (10 tests)
+- `mtg-mcp/src/tools/get-card.ts` — `get_card` tool: get full details for a specific card by name
+- `mtg-mcp/src/tools/get-card.test.ts` — Integration tests for `get_card` tool (11 tests)
 
 ## Notes
 
@@ -75,9 +77,9 @@
   - [x] 6.1 Create `src/tools/check-legality.ts` — validate a list of cards against format legality. Parameters: `card_names` (string[], required), `format` (string, required). Query: for each card name, check if a `LEGAL_IN` edge exists to the format. Return a results array with each card's status (legal, restricted, not legal, not found)
   - [x] 6.2 Register the tool and write tests
 
-- [ ] 7.0 Card detail tool
-  - [ ] 7.1 Create `src/tools/get-card.ts` — get full details for a specific card. Parameters: `card_name` (string, required). Return all Card properties plus its keywords, creature types, card types, color identity, mechanic tags, and format legalities
-  - [ ] 7.2 Register the tool and write tests
+- [x] 7.0 Card detail tool
+  - [x] 7.1 Create `src/tools/get-card.ts` — get full details for a specific card. Parameters: `card_name` (string, required). Return all Card properties plus its keywords, creature types, card types, color identity, mechanic tags, and format legalities
+  - [x] 7.2 Register the tool and write tests
 
 - [ ] 8.0 Integration testing and polish
   - [ ] 8.1 Write integration tests that run the MCP server end-to-end: start the server, send tool calls via stdio, verify responses
