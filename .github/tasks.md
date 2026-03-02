@@ -18,6 +18,9 @@
 - `mtg-mcp/src/server.ts` — MCP server setup, tool registration, stdio transport, graceful shutdown
 - `mtg-mcp/src/tools/search-cards.ts` — `search_cards` tool: general-purpose card search by name and oracle text with filters
 - `mtg-mcp/src/tools/search-cards.test.ts` — Integration tests for `search_cards` tool via MCP client
+- `mtg-mcp/src/tools/find-synergies.ts` — `find_synergies` tool: find cards sharing mechanic tags with a given card
+- `mtg-mcp/src/tools/find-by-mechanic.ts` — `find_by_mechanic` tool: find cards by mechanic tag names or broader search terms
+- `mtg-mcp/src/tools/find-synergies.test.ts` — Integration tests for `find_synergies` and `find_by_mechanic` tools
 
 ## Notes
 
@@ -49,10 +52,10 @@
   - [x] 2.4 Test the server manually: run it via stdio and send a `tools/list` request, then a `tools/call` for `search_cards`
   - [x] 2.5 Write tests for `search_cards` Cypher logic and parameter validation
 
-- [ ] 3.0 Synergy and mechanic discovery tools
-  - [ ] 3.1 Create `src/tools/find-synergies.ts` — find cards sharing mechanic tags with a given card. Parameters: `card_name` (string, required), `format` (string, optional, default `commander`), `color_identity` (string[], optional — restrict to these colors), `limit` (number, optional, default 15). Query: match the target card's `HAS_MECHANIC` tags, find other cards with the same tags, score by number of shared tags, return cards with shared tag names and synergy score
-  - [ ] 3.2 Create `src/tools/find-by-mechanic.ts` — find cards by mechanic tag names or category. Parameters: `tags` (string[], required — tag names or category names), `colors` (string[], optional), `cmc_max` (number, optional), `format` (string, optional, default `commander`), `limit` (number, optional, default 15). If a category name is provided (e.g. `card_draw`), match all tags in that category. Return matching cards with their matching tags
-  - [ ] 3.3 Register both tools in `server.ts` and write tests
+- [x] 3.0 Synergy and mechanic discovery tools
+  - [x] 3.1 Create `src/tools/find-synergies.ts` — find cards sharing mechanic tags with a given card. Parameters: `card_name` (string, required), `format` (string, optional, default `commander`), `color_identity` (string[], optional — restrict to these colors), `limit` (number, optional, default 15). Query: match the target card's `HAS_MECHANIC` tags, find other cards with the same tags, score by number of shared tags, return cards with shared tag names and synergy score
+  - [x] 3.2 Create `src/tools/find-by-mechanic.ts` — find cards by mechanic tag names or category. Parameters: `tags` (string[], required — tag names or category names), `colors` (string[], optional), `cmc_max` (number, optional), `format` (string, optional, default `commander`), `limit` (number, optional, default 15). If a category name is provided (e.g. `card_draw`), match all tags in that category. Return matching cards with their matching tags
+  - [x] 3.3 Register both tools in `server.ts` and write tests
 
 - [ ] 4.0 Combo discovery tool
   - [ ] 4.1 Create `src/tools/find-combos.ts` — find known combos involving a card. Parameters: `card_name` (string, required). Query: match `COMBOS_WITH` relationships. Return combo partners with combo description and full list of cards needed

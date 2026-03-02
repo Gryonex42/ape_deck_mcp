@@ -17,3 +17,15 @@
 - Tool registration uses the deprecated `server.tool()` overloads which still work fine. The newer `server.registerTool()` API is also available.
 - Full-text index `card_oracle_text` exists on `Card.oracle_text` only (not name). Name search uses `toLower(c.name) CONTAINS toLower($query)`.
 - Lucene query sanitisation: escape special chars and append `*` to each word for prefix matching, joined with `AND`.
+
+## MechanicTag Data (Task 3.0)
+
+- MechanicTag nodes have only a `name` property — no `category` property exists.
+- There are 198 MechanicTag nodes total (not 4000+ as originally estimated).
+- Only ~125 cards have `HAS_MECHANIC` relationships. Most cards in the DB are untagged.
+- Tags are flat descriptive names like `removal-exile`, `mana dork`, `draw engine`, `ramp`, `sacrifice outlet-creature`.
+- The 24 "functional categories" from the spec are conceptual groupings, not stored in the DB. Using CONTAINS matching on tag names works as a practical substitute (e.g., searching "removal" matches `removal-exile`, `removal-creature`, `removal-destroy`, etc.).
+- ENABLER_FOR has 25 edges, PAYOFF_FOR has 2 edges — both very sparse.
+- Most-tagged card: Wail of the Nim (5 tags). Max tags per card is around 4-5.
+- `find_synergies` returns "no mechanic tags" for untagged cards and "not found" for missing cards (distinguished via a `found` boolean).
+- Sol Ring and Lightning Bolt have no HAS_MECHANIC relationships.

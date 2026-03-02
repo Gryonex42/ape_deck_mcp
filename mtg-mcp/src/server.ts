@@ -2,6 +2,8 @@ import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { closeDriver } from "./db.js";
 import { registerSearchCards } from "./tools/search-cards.js";
+import { registerFindSynergies } from "./tools/find-synergies.js";
+import { registerFindByMechanic } from "./tools/find-by-mechanic.js";
 
 const server = new McpServer({
   name: "mtg-mcp",
@@ -10,6 +12,8 @@ const server = new McpServer({
 
 // Register tools
 registerSearchCards(server);
+registerFindSynergies(server);
+registerFindByMechanic(server);
 
 // Graceful shutdown
 async function shutdown() {
