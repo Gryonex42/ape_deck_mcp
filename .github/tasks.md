@@ -21,6 +21,8 @@
 - `mtg-mcp/src/tools/find-synergies.ts` — `find_synergies` tool: find cards sharing mechanic tags with a given card
 - `mtg-mcp/src/tools/find-by-mechanic.ts` — `find_by_mechanic` tool: find cards by mechanic tag names or broader search terms
 - `mtg-mcp/src/tools/find-synergies.test.ts` — Integration tests for `find_synergies` and `find_by_mechanic` tools
+- `mtg-mcp/src/tools/find-combos.ts` — `find_combos` tool: discover combo partners via enabler/payoff pairings, co-enablers, and complementary mechanic tags
+- `mtg-mcp/src/tools/find-combos.test.ts` — Integration tests for `find_combos` tool
 
 ## Notes
 
@@ -57,9 +59,9 @@
   - [x] 3.2 Create `src/tools/find-by-mechanic.ts` — find cards by mechanic tag names or category. Parameters: `tags` (string[], required — tag names or category names), `colors` (string[], optional), `cmc_max` (number, optional), `format` (string, optional, default `commander`), `limit` (number, optional, default 15). If a category name is provided (e.g. `card_draw`), match all tags in that category. Return matching cards with their matching tags
   - [x] 3.3 Register both tools in `server.ts` and write tests
 
-- [ ] 4.0 Combo discovery tool
-  - [ ] 4.1 Create `src/tools/find-combos.ts` — find known combos involving a card. Parameters: `card_name` (string, required). Query: match `COMBOS_WITH` relationships. Return combo partners with combo description and full list of cards needed
-  - [ ] 4.2 Register the tool and write tests
+- [x] 4.0 Combo discovery tool
+  - [x] 4.1 Create `src/tools/find-combos.ts` — find combo partners for a card. No `COMBOS_WITH` relationship exists in the DB, so the tool uses three strategies: (1) enabler↔payoff pairings via ENABLER_FOR/PAYOFF_FOR edges, (2) co-enabler discovery for same-mechanic strategy partners, (3) complementary mechanic tag matching (e.g. sacrifice → death triggers, blink → ETB). Parameters: `card_name`, `format`, `color_identity`, `limit`
+  - [x] 4.2 Register the tool in server.ts and write integration tests (10 tests)
 
 - [ ] 5.0 Tribal support tool
   - [ ] 5.1 Create `src/tools/find-tribal.ts` — find tribal lords, payoffs, and enablers for a creature type. Parameters: `creature_type` (string, required), `color_identity` (string[], optional), `format` (string, optional, default `commander`), `limit` (number, optional, default 20). Query: match `TRIBAL_LORD_OF` edges for lords, `HAS_CREATURE_TYPE` for creatures of the type, and `PAYOFF_FOR`/`ENABLER_FOR` edges for cards that support the tribe's common mechanics. Return categorised results (lords, creatures, payoffs, enablers)

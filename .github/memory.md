@@ -29,3 +29,13 @@
 - Most-tagged card: Wail of the Nim (5 tags). Max tags per card is around 4-5.
 - `find_synergies` returns "no mechanic tags" for untagged cards and "not found" for missing cards (distinguished via a `found` boolean).
 - Sol Ring and Lightning Bolt have no HAS_MECHANIC relationships.
+
+## Combo Tool Data (Task 4.0)
+
+- No `COMBOS_WITH` relationship exists in the Neo4j database. All relationship types: HAS_COLOR, HAS_COLOR_IDENTITY, HAS_KEYWORD, HAS_CREATURE_TYPE, HAS_CARD_TYPE, LEGAL_IN, PRODUCES_MANA_FOR, TRIBAL_LORD_OF, PAYOFF_FOR, ENABLER_FOR, HAS_MECHANIC.
+- ENABLER_FOR has 25 edges across 8 mechanic categories: cares_about_counters (6), ramps_mana (6), untap_synergy (5), sacrifices (4), etb_trigger (1), reanimates (1), draws_cards (1), lands_matter (1).
+- PAYOFF_FOR has only 2 edges: Lightning Coils → death_trigger, Myr Prototype → cares_about_counters.
+- Enabler↔Payoff pairs exist (e.g. Battlegrowth → cares_about_counters ← Myr Prototype).
+- Maximum shared mechanic tags between any two cards is 2 (7 such pairs exist). No pairs share 3+ tags.
+- `find_combos` tool uses three strategies: (1) enabler/payoff pairings, (2) co-enabler discovery, (3) complementary tag-name pattern matching with a defined mapping (sacrifice↔death/graveyard, blink↔etb, etc.).
+- Complementary tag patterns are defined as constants in find-combos.ts — easy to extend.

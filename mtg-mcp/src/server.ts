@@ -4,6 +4,7 @@ import { closeDriver } from "./db.js";
 import { registerSearchCards } from "./tools/search-cards.js";
 import { registerFindSynergies } from "./tools/find-synergies.js";
 import { registerFindByMechanic } from "./tools/find-by-mechanic.js";
+import { registerFindCombos } from "./tools/find-combos.js";
 
 const server = new McpServer({
   name: "mtg-mcp",
@@ -14,6 +15,7 @@ const server = new McpServer({
 registerSearchCards(server);
 registerFindSynergies(server);
 registerFindByMechanic(server);
+registerFindCombos(server);
 
 // Graceful shutdown
 async function shutdown() {
